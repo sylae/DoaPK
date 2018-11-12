@@ -1,0 +1,15 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+.prtHeader {
+    font-style: italic;
+}
+.prtMinor {
+    opacity: 0.5;
+}
+
+.prt p {
+    text-indent: -1em;
+    padding-left: 1em;
+}

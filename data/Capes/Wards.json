@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Hotshot",
+        "groups": ["Wards", "Active", "Portland Area", "Casefile PRTIA-2011-CDN"],
+        "PIR": [
+            "6cb6",
+            "2009-06-02",
+            "PDX"
+        ],
+        "civ": {
+            "c53": false,
+            "name": "Boyle, Dutch",
+            "dob": "1994-05-31",
+            "dobConfident": true,
+            "birthplace": "Portland, OR",
+            "confidence": "V",
+            "agency": ["WARDSPDX"],
+            "note": null
+        },
+        "intelAgency": ["WARDSPDX"],
+
+        "notePower": "Hotshot can fire bolts of heated energy from his fingertips. He also has a shield effect of some strength.",
+        "classification": ["Blaster", "Brute"],
+
+        "notePostPIR": "Consult LANCER prior to any significant disciplinary or containment activity."
+    },
+    {
+        "name": "Knockoff",
+        "groups": ["Wards", "Active", "Portland Area", "Pending Review"],
+        "PIR": [
+            "8497",
+            "2011-07-09",
+            "PDX"
+        ],
+        "civ": {
+            "c53": false,
+            "name": "Pratt, Sara Caraway",
+            "dob": "1995-11-08",
+            "dobConfident": true,
+            "birthplace": "Portland, OR",
+            "confidence": "V",
+            "agency": ["PRTPDX-OPS", "WARDSPDX"],
+            "note": null
+        },
+        "intelAgency": ["PRTPDX-OPS", "WARDSPDX"],
+
+        "notePower": "Knockoff is understood to have a Tinker specialization derived from parahumans she spends time near. Further details are pending.",
+        "classification": ["Tinker (Trump)", "Thinker 1"]
+    }
+]
