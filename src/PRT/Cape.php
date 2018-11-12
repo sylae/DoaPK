@@ -71,12 +71,13 @@ class Cape
             $lines[] = "<p class=\"prtMinor\">{$this->notePostPIR}</p>";
         }
 
+        $lines[] = "<p><span class = \"prtHeader\">Subject ID</span>: {$this->name}</p>";
+
         if (count($this->groups) > 0) {
             $groups  = implode(", ", $this->groups);
             $lines[] = "<p><span class=\"prtHeader\">Filed under</span>: {$groups}</p>";
         }
 
-        $lines[] = "<p><span class = \"prtHeader\">Subject ID</span>: {$this->name}</p>";
         if (count($this->classification) > 0) {
             $class   = implode(", ", $this->classification);
             $lines[] = "<p><span class=\"prtHeader\">Classification</span>: {$class}</p>";
