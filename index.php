@@ -17,7 +17,7 @@ $nowDate = Carbon::now("America/Los_Angeles")->setTimezone("America/Los_Angeles"
 Carbon::setTestNow($nowDate);
 
 $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/[{search}]', function(array $args) {
+    $r->addRoute('GET', '/diary/[{search}]', function(array $args) {
         $loader = new \Twig\Loader\FilesystemLoader('tpl');
         $twig   = new \Twig\Environment($loader, [
             'cache' => false,
@@ -47,7 +47,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
 
 $uri = $_SERVER['REQUEST_URI'];
 if (php_uname('s') == "Windows NT") {
-    $uri = str_replace("/diary/", "/", $uri);
+    $uri = "/diary" . $uri;
 }
 if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
