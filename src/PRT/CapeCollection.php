@@ -18,7 +18,7 @@ use Carbon\Carbon;
 class CapeCollection extends \CharlotteDunois\Collect\Collection
 {
 
-    function __construct(mixed $data = null)
+    function __construct()
     {
         static $capes = [];
         if (count($capes) == 0) {
