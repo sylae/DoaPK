@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}PRT SAGA Database{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4"><a href="/">PRT <em>SAGA</em> Database</a></h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          {% block searchInfo %}
+              <h3>Welcome to the PRT <em>SAGA</em> Database application</h3>
+              <p>You are logged in as <em>sara.pratt@portland.prt.gov</em>. The current system time is <em>{{ now.toCookieString() }}</em>.</p>
+              <p>Saved Searches:</p>
+              <ul>
+                {% for k,v in searches %}
+                    <li><a href="/{{ k }}">{{ v.name }}</a></li>
+
+                {% endfor %}
+              </ul>
+              <hr />
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      {% block body %}
+          <div class="row">
+            <div class="col">
+              <p><strong>To begin, please choose a saved search from the above options.</strong></p>
+            </div>
+          </div>
+      {% endblock %}
+      <div class="row pt-5 pb-2">
+        <div class="col-md-2">
+          <a href="https://prt.gov/"><img class="img-fluid" src="/img/prtLogo.png" alt="" /></a>
+        </div>
+        <div class="col-md-10 prt">
+          <p><small><span class="prtHeader">Support</span>: <em>SAGA</em> support can be found via your department's IT support contact, or through your regional PRT helpdesk. As part of the PRT's Open Government initiative, <em>SAGA</em> is <a href="https://github.com/sylae/DoaPK">open-source software</a>.</small></p>
+          <p><small><span class="prtMinor">For official use only. Unauthorized release of information is a violation of Federal Law under 18 U.S.C. § 798, as well as state and local laws as applicable. For more information, please contact your department PRT-IB officer.</span></small></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
