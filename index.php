@@ -46,6 +46,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
 });
 
 $uri = $_SERVER['REQUEST_URI'];
+if (php_uname('s') == "Windows NT") {
+    $uri = str_replace("/diary/", "/", $uri);
+}
 if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }

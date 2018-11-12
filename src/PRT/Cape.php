@@ -98,9 +98,9 @@ class Cape
             $lines[] = "<p><span class=\"prtHeader\">Containment</span>: Per Classification SOP.</p>";
         }
 
-        if (count($this->pirs) > 0) {
-            $lines[] = "<p><span class=\"prtMinor\"><span class=\"prtHeader\">Linked files</span>: " . $this->linkedFilesString() . "</p>";
-        }
+        // if (count($this->pirs) > 0) {
+        //     $lines[] = "<p><span class=\"prtMinor\"><span class=\"prtHeader\">Linked files</span>: " . $this->linkedFilesString() . "</p>";
+        // }
         $lines[] = "<p class=\"prtMinor\">CONFIDENTIAL//{$agency}//ORCON</span></p>";
 
         return implode(PHP_EOL, $lines);
