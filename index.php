@@ -29,6 +29,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
 
         if (array_key_exists($args['search'] ?? null, $searches)) {
             echo $twig->render("capes.twig", [
+                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'capes'    => $capes->filter($searches[$args['search']]['filter']),
                 'params'   => $searches[$args['search']]['args'],
                 'now'      => Carbon::now(),
@@ -36,6 +37,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
             ]);
         } else {
             echo $twig->render("base.twig", [
+                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'now'      => Carbon::now(),
                 'searches' => $searches,
             ]);
@@ -57,7 +59,10 @@ switch ($routeInfo[0]) {
         $twig   = new \Twig\Environment($loader, [
             'cache' => false,
         ]);
-        echo $twig->render("404.twig", ['uri' => $uri]);
+        echo $twig->render("404.twig", [
+            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'uri'  => $uri
+        ]);
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         http_response_code(405);
@@ -65,7 +70,10 @@ switch ($routeInfo[0]) {
         $twig   = new \Twig\Environment($loader, [
             'cache' => false,
         ]);
-        echo $twig->render("405.twig", ['allowedMethods' => $routeInfo[1]]);
+        echo $twig->render("405.twig", [
+            'base'           => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'allowedMethods' => $routeInfo[1]
+        ]);
         break;
     case FastRoute\Dispatcher::FOUND:
         $routeInfo[1]($routeInfo[2]);
