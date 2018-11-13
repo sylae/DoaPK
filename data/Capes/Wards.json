@@ -34,7 +34,7 @@
         ],
         "civ": {
             "c53": false,
-            "name": "Pratt, Sara Caraway",
+            "name": "Pratt, Sara",
             "dob": "1995-11-08",
             "dobConfident": true,
             "birthplace": "Portland, OR",
@@ -46,5 +46,97 @@
 
         "notePower": "Knockoff is understood to have a Tinker specialization derived from parahumans she spends time near. Further details are pending.",
         "classification": ["Tinker (Trump)", "Thinker 1"]
+    },
+    {
+        "name": "Hypothermia",
+        "groups": ["Wards", "Active", "Portland Area"],
+        "PIR": [
+            "0219",
+            "2009-01-02",
+            "DEN"
+        ],
+        "civ": {
+            "c53": false,
+            "name": "Peak, Audrey",
+            "dob": "1998-01-02",
+            "dobConfident": true,
+            "birthplace": "Bozeman, MT",
+            "confidence": "V",
+            "agency": ["WARDSPDX", "WARDSDEN-BZN"],
+            "note": null
+        },
+        "intelAgency": ["WARDSPDX", "WARDSDEN-BZN"],
+
+        "notePower": "Hypothermia is a highly dangerous and mobile Shaker. She creates shockwaves and explosions of ice that she uses both as an attack and to propel her around the battlefield.",
+        "classification": ["Mover", "Shaker"]
+    },
+    {
+        "name": "Magnum Opus",
+        "groups": ["Wards", "Active", "Portland Area", "WITSEC"],
+        "PIR": [
+            "47d0",
+            "2010-11-25",
+            "GBR"
+        ],
+        "civ": {
+            "c53": false,
+            "name": "Styles, Felicity",
+            "dob": "1995-03-11",
+            "dobConfident": true,
+            "birthplace": "Stafford, United Kingdom",
+            "confidence": "V",
+            "agency": ["WARDSPDX", "FGI-GBR"],
+            "note": null
+        },
+        "intelAgency": ["WARDSPDX", "FGI-GBR"],
+
+        "notePower": "Magnum Opus is identified as a focal-type Tinker. Her power appears to have a wide focus, but she is limited by an inability to repair her inventions. Subject has expressed repeated dissatisfaction with current metallurgical processes, TINOPS recommends pairing with a metamaterials-providing cape.",
+        "classification": ["Tinker"]
+    },
+    {
+        "name": "Powerplay",
+        "groups": ["Wards", "Active", "Portland Area"],
+        "PIR": [
+            "2c5d",
+            "2009-03-02",
+            "PDX"
+        ],
+        "civ": {
+            "c53": false,
+            "name": "Wilson, Heather",
+            "dob": "1994-07-22",
+            "dobConfident": true,
+            "birthplace": "Vancouver, WA",
+            "confidence": "V",
+            "agency": ["SDFSH", "WARDSPDX"],
+            "note": null
+        },
+        "intelAgency": ["SDFSH", "WARDSPDX"],
+
+        "notePower": "Powerplay is a grab-bag cape with three primary abilities. The most significant is the ability to shoot lasers from her person. She also possesses flight and a Brute-effect resilience.",
+        "classification": ["Blaster", "Mover", "Brute"]
+    },
+    {
+        "name": "Mirage",
+        "groups": ["Wards", "Active", "Portland Area"],
+        "PIR": [
+            "EEAF",
+            "2010-12-08",
+            "NYC"
+        ],
+        "civ": {
+            "c53": false,
+            "name": "Greenspan, Nicholas",
+            "dob": "1995-02-28",
+            "dobConfident": true,
+            "birthplace": "New York, NY",
+            "confidence": "V",
+            "agency": ["WARDSNYC", "WARDSPDX"],
+            "note": null
+        },
+        "intelAgency": ["WARDSNYC", "WARDSPDX"],
+
+        "notePower": "Subject is a Tinker specializing in camoflauge and stealth technology.",
+        "classification": ["Tinker", "Stranger"]
     }
 ]
