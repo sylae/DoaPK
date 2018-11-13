@@ -22,6 +22,31 @@ $searches['heroesPDX'] = [
     }
 ];
 
+$searches['wardsPDX'] = [
+    'name'   => 'Portland Heroes (Wards)',
+    'args'   => [
+        '<em>Filed under</em>: Wards',
+        'AND <em>Filed under</em>: Portland Area',
+        'AND <em>Filed under</em>: Active',
+    ],
+    'filter' => function(Cape $v, $k): bool {
+        return (in_array("Wards", $v->groups) && in_array("Portland Area", $v->groups) && in_array("Active", $v->groups));
+    }
+];
+
+
+$searches['protectoratePDX'] = [
+    'name'   => 'Portland Heroes (Protectorate)',
+    'args'   => [
+        '<em>Filed under</em>: Protectorate',
+        'AND <em>Filed under</em>: Portland Area',
+        'AND <em>Filed under</em>: Active',
+    ],
+    'filter' => function(Cape $v, $k): bool {
+        return (in_array("Protectorate", $v->groups) && in_array("Portland Area", $v->groups) && in_array("Active", $v->groups));
+    }
+];
+
 $searches['elite'] = [
     'name'   => 'Elite with known Portland ties',
     'args'   => [
