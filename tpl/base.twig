@@ -20,7 +20,7 @@
         <div class="col">
           {% block searchInfo %}
               <h3>Welcome to the PRT <em>SAGA</em> Database application</h3>
-              <p>You are logged in as <em>sara.pratt@portland.prt.gov</em>. The current system time is <em>{{ now.toCookieString() }}</em>.</p>
+              <p>You are logged in as <em>sara.pratt@portland.prt.gov</em>. The current system time is <em>{{ now.toCookieString() }}</em>. You have access to {{ count|number_format }} PIR records.</p>
               <p>Saved Searches:</p>
               <ul>
                 {% for k,v in searches %}

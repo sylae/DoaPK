@@ -33,12 +33,14 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
                 'capes'    => $capes->filter($searches[$args['search']]['filter']),
                 'params'   => $searches[$args['search']]['args'],
                 'now'      => Carbon::now(),
+                'count'    => $capes->count(),
                 'searches' => $searches,
             ]);
         } else {
             echo $twig->render("base.twig", [
                 'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'now'      => Carbon::now(),
+                'count'    => $capes->count(),
                 'searches' => $searches,
             ]);
         }
@@ -63,8 +65,10 @@ switch ($routeInfo[0]) {
             'cache' => false,
         ]);
         echo $twig->render("404.twig", [
-            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'uri'  => $uri
+            'base'  => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'now'   => Carbon::now(),
+            'count' => $capes->count(),
+            'uri'   => $uri
         ]);
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
@@ -75,6 +79,8 @@ switch ($routeInfo[0]) {
         ]);
         echo $twig->render("405.twig", [
             'base'           => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'now'            => Carbon::now(),
+            'count'          => $capes->count(),
             'allowedMethods' => $routeInfo[1]
         ]);
         break;
