@@ -9,6 +9,7 @@
 namespace PRT;
 
 use Carbon\Carbon;
+use \Carbon\CarbonInterface;
 use CharlotteDunois\Collect\Collection;
 
 /**
@@ -32,7 +33,7 @@ class PIR
 
     /**
      *
-     * @var \Carbon\Carbon
+     * @var \Carbon\CarbonInterface
      */
     public $date;
 
@@ -42,7 +43,7 @@ class PIR
      */
     private $capes;
 
-    public function __construct(int $id, Carbon $date, string $dept)
+    public function __construct(int $id, CarbonInterface $date, string $dept)
     {
         $this->capes = new Collection();
         if (!$this->isValidID($id)) {
@@ -100,7 +101,7 @@ class PIR
         return true;
     }
 
-    private function isValidDate(Carbon $input): bool
+    private function isValidDate(CarbonInterface $input): bool
     {
         $formation = new Carbon("18 Jan 1993");
         if ($input < $formation) {
