@@ -54,18 +54,52 @@ PIR::pirDB()->each(function (PIR $v, $k) {
 
 // THE ACTUAL ROUTER
 $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/diary/[{search}]', function(array $args) {
-        $loader = new \Twig\Loader\FilesystemLoader('tpl');
-        $twig   = new \Twig\Environment($loader, [
-            'cache' => false,
-        ]);
+    $loader = new \Twig\Loader\FilesystemLoader('tpl');
+    $twig   = new \Twig\Environment($loader, [
+        'cache' => false,
+    ]);
+    $twig->addTest(new \Twig\TwigTest('instanceof', function ($var, $instance) {
+        $reflexionClass = new \ReflectionClass($instance);
+        return $reflexionClass->isInstance($var);
+    }));
+    $searches = include "data/savedSearches.php";
 
-        $searches = include "data/savedSearches.php";
+    $r->addRoute('GET', '/diary/lookup', function(array $args) use ($twig, $searches) {
+        echo $twig->render("lookup.twig", [
+            'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'now'      => Carbon::now(),
+            'count'    => PIR::pirDB()->count(),
+            'searches' => $searches,
+        ]);
+    });
+
+    $r->addRoute('GET', '/diary/pir/{pir}', function(array $args) use ($twig, $searches) {
 
         if (array_key_exists($args['search'] ?? null, $searches)) {
             echo $twig->render("capes.twig", [
                 'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'capes'    => PIR::pirDB()->filter($searches[$args['search']]['filter']),
+                'params'   => $searches[$args['search']]['args'],
+                'now'      => Carbon::now(),
+                'count'    => PIR::pirDB()->count(),
+                'searches' => $searches,
+            ]);
+        } else {
+            echo $twig->render("base.twig", [
+                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
+                'now'      => Carbon::now(),
+                'count'    => PIR::pirDB()->count(),
+                'searches' => $searches,
+            ]);
+        }
+    });
+
+    $r->addRoute('GET', '/diary/[{search}]', function(array $args) use ($twig, $searches) {
+
+        if (array_key_exists($args['search'] ?? null, $searches)) {
+            echo $twig->render("view.twig", [
+                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
+                'records'  => PIR::pirDB()->filter($searches[$args['search']]['filter']),
                 'params'   => $searches[$args['search']]['args'],
                 'now'      => Carbon::now(),
                 'count'    => PIR::pirDB()->count(),

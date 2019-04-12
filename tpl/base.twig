@@ -13,12 +13,12 @@
     <nav class="nav">
       <ul>
         <li><a href="{{ base }}/">Home</a></li>
-        <li><a href="{{ base }}/">PIR Lookup</a></li>
-        <li><a href="{{ base }}/">Training</a></li>
-        <li><a href="{{ base }}/">Medical</a></li>
-        <li><a href="{{ base }}/">Human Resources</a></li>
-        <li><a href="{{ base }}/">System</a></li>
-        <li><a href="{{ base }}/">Technical Support</a></li>
+        <li><a href="{{ base }}/lookup">PIR Lookup</a></li>
+        <li><a href="https://forums.spacebattles.com/threads/diary-of-a-professional-knockoff-worm.663592/">Training</a></li>
+        <li><a href="https://forums.sufficientvelocity.com/threads/diary-of-a-professional-knockoff-worm.49090/">Medical</a></li>
+        <li><a href="https://archiveofourown.org/works/15347448/chapters/35611380">Human Resources</a></li>
+        <li><a href="https://www.fanfiction.net/s/13006277/1/Diary-of-a-Professional-Knockoff">System</a></li>
+        <li><a href="mailto:keira@calref.net">Technical Support</a></li>
         <li><a href="{{ base }}/">Logout</a></li>
       </ul>
     </nav>
@@ -26,7 +26,7 @@
     <div class="searchInfo">
     {% block searchInfo %}
       <h3>Welcome to the PRT <em>SAGA</em> Database application</h3>
-      <p>You have access to {{ count|number_format }} PIR records.</p>
+      <p>You have access to {{ count|number_format }} PIR entries.</p>
       <p>Saved Searches:</p>
       <ul class="savedSearches">
         {% for k,v in searches %}
