@@ -3,7 +3,7 @@
 {% block searchInfo %}
     {{ parent() }}
     <p>{{ capes.count()|number_format }} record(s) found matching the following search parameters:</p>
-    <ul>
+    <ul class="params">
       {% for k,v in params %}
           <li>{{ v|raw }}</li>
 
@@ -12,21 +12,17 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-      {% for k, v in capes %}
-          <div class="col-12">
-            <div class="col-md-8 py-5">
-              <h1>{{k}}</h1>
-              <div class="prt">
-                {{ v|raw }}
-              </div>
-            </div>
-            {% if v.image is not null %}
-                <div class="col-md-4">
-                  <img class="img-fluid" src="{{ base }}/{{ v.image }}" />
-                </div>
-            {% endif %}
-          </div>
-      {% endfor %}
-    </div>
+  <div class="row">
+    {% for k, v in capes %}
+      {% if v.image is not null %}
+        <div class="capeImage">
+          <img src="{{ base }}/{{ v.image }}" />
+        </div>
+      {% endif %}
+      <h1>{{v.name}}</h1>
+      <div class="prt">
+        {{ v|raw }}
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
