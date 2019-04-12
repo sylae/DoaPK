@@ -146,4 +146,14 @@ class PIR
     {
         return $this->date->year * 100000 + $this->id;
     }
+
+    public function linkedFilesString(Collection $refs): string
+    {
+        $txt = "<a href=\"{{ base }}/pir/%s\" class=\"pirLink\">%s</a>";
+        $x = [];
+        foreach ($refs as $ref) {
+            $x[] = sprintf($txt, $ref->getTag(), $ref->getTag());
+        }
+        return implode(", ", $x);
+    }
 }

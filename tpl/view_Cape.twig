@@ -49,7 +49,7 @@
 {% endif %}
 
 {% if v.getRefs(v)|length > 0  %}
-  <p><span class="prtMinor"><span class="prtHeader">Linked files</span>: {{ v.linkedFilesString(v.getRefs(v))|raw }}</p>
+  <p><span class="prtMinor"><span class="prtHeader">Linked files</span>: {{ include(template_from_string(v.linkedFilesString(v.getRefs(v)))) }}</p>
 {% endif %}
 
 <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</span></p>

@@ -58,6 +58,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
     $twig   = new \Twig\Environment($loader, [
         'cache' => false,
     ]);
+    $twig->addExtension(new \Twig\Extension\StringLoaderExtension());
     $twig->addTest(new \Twig\TwigTest('instanceof', function ($var, $instance) {
         $reflexionClass = new \ReflectionClass($instance);
         return $reflexionClass->isInstance($var);

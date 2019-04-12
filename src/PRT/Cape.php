@@ -43,13 +43,4 @@ class Cape extends PIR
         $this->civID = new CivID();
         $this->addRef($this);
     }
-
-    public function linkedFilesString(Collection $refs): string
-    {
-        $x = [];
-        foreach ($refs as $ref) {
-            $x[] = $ref->getTag();
-        }
-        return implode(", ", $x);
-    }
 }

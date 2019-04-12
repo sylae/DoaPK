@@ -36,7 +36,6 @@ $searches['wardsPDX'] = [
     }
 ];
 
-
 $searches['protectoratePDX'] = [
     'name'   => 'Portland Heroes (Protectorate)',
     'args'   => [
