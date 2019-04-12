@@ -1,0 +1,5 @@
+#!/bin/sh
+
+git pull --recurse-submodules
+composer install
+sass -s compressed css/style.scss css/style.css
