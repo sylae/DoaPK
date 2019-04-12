@@ -8,6 +8,8 @@
 
 namespace PRT;
 
+use Carbon\Carbon;
+use \Carbon\CarbonInterface;
 use CharlotteDunois\Collect\Collection;
 
 /**
@@ -15,15 +17,10 @@ use CharlotteDunois\Collect\Collection;
  *
  * @author Keira Dueck <sylae@calref.net>
  */
-class Cape
+class Cape extends PIR
 {
     public $name;
 
-    /**
-     *
-     * @var PIR
-     */
-    public $mainPIR;
     public $intelAgency    = [];
     public $classification = [];
     public $groups         = [];
@@ -40,9 +37,11 @@ class Cape
     public $noteContainment;
     public $image;
 
-    public function __construct()
+    public function __construct(int $id, CarbonInterface $date, string $dept)
     {
+        parent::__construct($id, $date, $dept);
         $this->civID = new CivID();
+        $this->addRef($this);
     }
 
     public function __toString(): string
@@ -56,7 +55,7 @@ class Cape
     public function toHTMLString(): string
     {
         $agency = implode("/", $this->intelAgency);
-        $pir    = $this->mainPIR->getLongTag();
+        $pir    = $this->getLongTag();
 
         $lines   = [];
         $lines[] = "<p class=\"prtMinor\">CONFIDENTIAL//{$agency}//ORCON</p>"
@@ -99,16 +98,22 @@ class Cape
             $lines[] = "<p><span class=\"prtHeader\">Containment</span>: Per Classification SOP.</p>";
         }
 
-        // if (count($this->pirs) > 0) {
-        //     $lines[] = "<p><span class=\"prtMinor\"><span class=\"prtHeader\">Linked files</span>: " . $this->linkedFilesString() . "</p>";
-        // }
+        $refs = $this->getRefs($this);
+        if ($refs->count() > 0) {
+            $lines[] = "<p><span class=\"prtMinor\"><span class=\"prtHeader\">Linked files</span>: " . $this->linkedFilesString($refs) . "</p>";
+        }
+
         $lines[] = "<p class=\"prtMinor\">CONFIDENTIAL//{$agency}//ORCON</span></p>";
 
         return implode(PHP_EOL, $lines);
     }
 
-    public function linkedFilesString(): string
+    public function linkedFilesString(Collection $refs): string
     {
-        return "";
+        $x = [];
+        foreach ($refs as $ref) {
+            $x[] = $ref->getTag();
+        }
+        return implode(", ", $x);
     }
 }

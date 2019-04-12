@@ -16,6 +16,43 @@ require_once "vendor/autoload.php";
 $nowDate = Carbon::now("America/Los_Angeles")->setTimezone("America/Los_Angeles")->setDate(2011, 7, 14);
 Carbon::setTestNow($nowDate);
 
+// DATA LOADING STEP ONE (CAPES)
+foreach (glob("data/Capes/*.json") as $file) {
+    foreach (json_decode(file_get_contents($file), true) as $x) {
+        $c = new Cape(hexdec($x['PIR'][0]), new Carbon($x['PIR'][1]), $x['PIR'][2]);
+        foreach ($x as $arg => $value) {
+            if (is_null($arg)) {
+                continue;
+            }
+            switch ($arg) {
+                case "PIR":
+                    break;
+                case "civ":
+                    if (!is_array($value)) {
+                        break;
+                    }
+                    foreach ($value as $civArg => $civValue) {
+                        $c->civID->$civArg = $civValue;
+                    }
+                    if (is_string($c->civID->dob)) {
+                        $c->civID->dob = new Carbon($c->civID->dob);
+                    }
+                    break;
+                default:
+                    $c->$arg = $value;
+            }
+        }
+        $capes[$c->name] = $c;
+    }
+}
+
+// TESTING PURPOSES
+PIR::pirDB()->each(function (PIR $v, $k) {
+    $v->addRef(PIR::pirDB()->get("PDX-2011-8497"));
+});
+
+
+// THE ACTUAL ROUTER
 $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/diary/[{search}]', function(array $args) {
         $loader = new \Twig\Loader\FilesystemLoader('tpl');
@@ -23,24 +60,22 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
             'cache' => false,
         ]);
 
-        $capes = new CapeCollection();
-
         $searches = include "data/savedSearches.php";
 
         if (array_key_exists($args['search'] ?? null, $searches)) {
             echo $twig->render("capes.twig", [
                 'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'capes'    => $capes->filter($searches[$args['search']]['filter']),
+                'capes'    => PIR::pirDB()->filter($searches[$args['search']]['filter']),
                 'params'   => $searches[$args['search']]['args'],
                 'now'      => Carbon::now(),
-                'count'    => $capes->count(),
+                'count'    => PIR::pirDB()->count(),
                 'searches' => $searches,
             ]);
         } else {
             echo $twig->render("base.twig", [
                 'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'now'      => Carbon::now(),
-                'count'    => $capes->count(),
+                'count'    => PIR::pirDB()->count(),
                 'searches' => $searches,
             ]);
         }
@@ -88,4 +123,3 @@ switch ($routeInfo[0]) {
         $routeInfo[1]($routeInfo[2]);
         break;
 }
-

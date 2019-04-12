@@ -41,11 +41,11 @@ class PIR
      *
      * @var \CharlotteDunois\Collect\Collection
      */
-    private $capes;
+    private $refs;
 
     public function __construct(int $id, CarbonInterface $date, string $dept)
     {
-        $this->capes = new Collection();
+        $this->refs = new Collection();
         if (!$this->isValidID($id)) {
             throw new \RangeException("ID failed checks!");
         }
@@ -58,16 +58,21 @@ class PIR
         $this->id   = $id;
         $this->date = $date->startOfDay();
         $this->dept = $dept;
+
+        $this->setSelf();
     }
 
-    public function addCape(string $cape)
+    public function addRef(PIR $ref, bool $reverse = true)
     {
-        $this->capes->set($cape, true);
+        $this->refs->set($ref->getTag(), $ref);
+        if ($reverse) {
+            $ref->refs->set($this->getTag(), $this);
+        }
     }
 
-    public function hasCape(string $cape)
+    public function hasRef(PIR $ref)
     {
-        return $this->capes->contains($cape);
+        return $this->refs->has($ref->getTag());
     }
 
     public function getTag(): string
@@ -108,5 +113,37 @@ class PIR
             return false;
         }
         return true;
+    }
+
+    public static function pirDB(): Collection
+    {
+        static $pirs;
+
+        if (!$pirs instanceof Collection) {
+            $pirs = new Collection();
+        }
+        return $pirs;
+    }
+
+    private function setSelf()
+    {
+        self::pirDB()->set($this->getTag(), $this);
+    }
+
+    public function getRefs(PIR $needle)
+    {
+        return self::pirDB()->filter(function (PIR $v, $k) use ($needle) {
+            // remove self first
+            return ($v != $this);
+        })->filter(function (PIR $v, $k) use ($needle) {
+            return $v->hasRef($needle);
+        })->sortCustom(function (PIR $a, PIR $b) {
+            return $a->getSortNumber() <=> $b->getSortNumber();
+        });
+    }
+
+    public function getSortNumber(): int
+    {
+        return $this->date->year * 100000 + $this->id;
     }
 }
