@@ -1,0 +1,56 @@
+{% if v.image is not null %}
+    <div class="capeImage">
+    <img src="{{ base }}/{{ v.image }}" />
+    </div>
+{% endif %}
+<h1>{{v.name}}</h1>
+<div class="prt">
+<p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
+<p class="prtMinor">PARAHUMAN RESPONSE TEAM<br />
+  PACIFIC NORTHWEST DIVISION - PORTLAND OFFICE<br />
+  INTELLIGENCE BUREAU</p>
+
+<p class="prtMinor">Parahuman Intelligence Record<br />{{v.getLongTag()}}</p>
+
+
+{%if v.notePostPIR is not empty %}
+  <p class="prtMinor">{{ v.notePostPIR }}</p>
+{% endif %}
+
+<p><span class = "prtHeader">Subject ID</span>: {{ v.name }}</p>
+
+{%if v.groups|length > 0 %}
+  <p><span class="prtHeader">Filed under</span>: {{ v.groups|join(', ') }}</p>
+{% endif %}
+
+
+{%if v.classification|length > 0 %}
+  <p><span class="prtHeader">Classification</span>: {{ v.classification|join(', ') }}</p>
+{% endif %}
+
+{{ v.civID.pirString()|raw }}
+
+{%if v.notePower is not empty %}
+<p><span class="prtHeader">Power</span>: {{ v.notePower }}</p>
+{% endif %}
+
+{%if v.noteBehavior is not empty %}
+<p><span class="prtHeader">Behavior</span>: {{ v.noteBehavior }}</p>
+{% endif %}
+
+{%if v.noteAppearance is not empty %}
+<p><span class="prtHeader">Appearance</span>: {{ v.noteAppearance }}</p>
+{% endif %}
+
+{%if v.noteContainment is not empty %}
+  <p><span class="prtHeader">Containment</span>: {{ v.noteContainment }}</p>
+{%elseif v.classification|length > 0 %}
+  <p><span class="prtHeader">Containment</span>: Per Classification SOP.</p>
+{% endif %}
+
+{% if v.getRefs(v)|length > 0  %}
+  <p><span class="prtMinor"><span class="prtHeader">Linked files</span>: {{ v.linkedFilesString(v.getRefs(v))|raw }}</p>
+{% endif %}
+
+<p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</span></p>
+</div>

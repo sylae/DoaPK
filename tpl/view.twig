@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block searchInfo %}
+    {{ parent() }}
+    <p>{{ records.count()|number_format }} record(s) found matching the following search parameters:</p>
+    <ul class="params">
+      {% for k,v in params %}
+          <li>{{ v|raw }}</li>
+
+      {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block body %}
+  <div class="row">
+    {% for k, v in records %}
+      {% if v is instanceof('PRT\\Cape') %}
+        {{ include('view_Cape.twig') }}
+      {% endif %}
+
+    {% endfor %}
+  </div>
+{% endblock %}
