@@ -43,6 +43,11 @@ class PIR
      */
     private $refs;
 
+    public $name;
+    public $intelAgency = [];
+    public $groups = [];
+    public $notePostPIR;
+
     public function __construct(int $id, CarbonInterface $date, string $dept)
     {
         $this->refs = new Collection();
@@ -152,7 +157,11 @@ class PIR
         $txt = "<a href=\"{{ base }}/pir/%s\" class=\"pirLink\">%s</a>";
         $x = [];
         foreach ($refs as $ref) {
-            $x[] = sprintf($txt, $ref->getTag(), $ref->getTag());
+            if (get_class($ref) === 'PRT\PIR') {
+                $x[] = $ref->getTag();
+            } else {
+                $x[] = sprintf($txt, $ref->getTag(), $ref->getTag());
+            }
         }
         return implode(", ", $x);
     }

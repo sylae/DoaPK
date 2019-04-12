@@ -1,0 +1,40 @@
+[
+    {
+        "name": "Pratt, Sara Caraway",
+        "groups": [
+            "Active",
+            "Portland Area",
+            "Interns (PDX Ops)"
+        ],
+        "PIR": [
+            "651e",
+            "2011-05-23",
+            "PDX"
+        ],
+        "artistURL": "https://www.deviantart.com/kingdaume/art/Commission-Knockoff-759575579",
+        "artist": "Kingdaume",
+        "remarks": "Yeet!",
+        "image": "media/knockoffKD.png",
+        "intelAgency": [
+            "PRTPDX-OPS"
+        ]
+    },
+    {
+        "name": "Knockoff",
+        "groups": [
+            "Wards",
+            "Active",
+            "Portland Area",
+            "Pending Review"
+        ],
+        "PIR": [
+            "651f",
+            "2011-05-23",
+            "PDX"
+        ],
+        "artistURL": "https://www.deviantart.com/cpericardium",
+        "artist": "Pericardium",
+        "remarks": "idk keira put words here when it's not ass o'clock you should have been in bed literally seven hours ago whyyyyy jesus christ you wonder why your quality of life is so low and it's like, hey maybe if you actually kept a consistent sleep schedule that might be a start, but no, you have to go and be a dumb fucking bitch and do this shit.",
+        "image": "media/knockoffPeri.png"
+    }
+]

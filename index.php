@@ -42,13 +42,32 @@ foreach (glob("data/Capes/*.json") as $file) {
                     $c->$arg = $value;
             }
         }
-        $capes[$c->name] = $c;
+    }
+}
+
+// DATA LOADING STEP TWO (ART)
+foreach (glob("data/Art/*.json") as $file) {
+    foreach (json_decode(file_get_contents($file), true) as $x) {
+        $c = new Media(hexdec($x['PIR'][0]), new Carbon($x['PIR'][1]), $x['PIR'][2]);
+        foreach ($x as $arg => $value) {
+            if (is_null($arg)) {
+                continue;
+            }
+            switch ($arg) {
+                case "PIR":
+                    break;
+                default:
+                    $c->$arg = $value;
+            }
+        }
     }
 }
 
 // TESTING PURPOSES
-PIR::pirDB()->each(function (PIR $v, $k) {
+$x = new PIR(0x1234, new Carbon("2001-01-01"), "KEI");
+PIR::pirDB()->each(function (PIR $v, $k) use ($x) {
     $v->addRef(PIR::pirDB()->get("PDX-2011-8497"));
+    $v->addRef($x);
 });
 
 

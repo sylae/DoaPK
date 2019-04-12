@@ -112,14 +112,14 @@ $searches['indies'] = [
 ];
 
 $searches['media'] = [
-    'name'   => 'Image Dept. Proofs (Public)',
+    'name'   => 'Image Dept. Proofs',
     'args'   => [
-        '<em>Filed under</em>: Media (Public release approved)',
+        '<em>Filed under</em>: Media',
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Media Image',
     ],
     'filter' => function(PIR $v, $k): bool {
-        return (false);
+        return ($v instanceof Media);
     }
 ];
 

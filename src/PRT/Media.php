@@ -13,28 +13,20 @@ use \Carbon\CarbonInterface;
 use CharlotteDunois\Collect\Collection;
 
 /**
- * Stores information on a Cape.
+ * Pictures! of Art!
  *
  * @author Keira Dueck <sylae@calref.net>
  */
-class Cape extends PIR
+class Media extends PIR
 {
-    public $classification = [];
-
-    /**
-     *
-     * @var CivID
-     */
-    public $civID;
-    public $notePower;
-    public $noteBehavior;
-    public $noteAppearance;
-    public $noteContainment;
+    public $artist;
+    public $artistURL;
+    public $remarks;
+    public $image;
 
     public function __construct(int $id, CarbonInterface $date, string $dept)
     {
         parent::__construct($id, $date, $dept);
-        $this->civID = new CivID();
         $this->addRef($this);
     }
 }

@@ -1,22 +1,3 @@
-{% if v.image is not null %}
-    <div class="capeImage">
-    <img src="{{ base }}/{{ v.image }}" />
-    </div>
-{% endif %}
-<h1>{{v.name}}</h1>
-<div class="prt">
-<p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
-<p class="prtMinor">PARAHUMAN RESPONSE TEAM<br />
-  PACIFIC NORTHWEST DIVISION - PORTLAND OFFICE<br />
-  INTELLIGENCE BUREAU</p>
-
-<p class="prtMinor">Parahuman Intelligence Record<br />{{v.getLongTag()}}</p>
-
-
-{%if v.notePostPIR is not empty %}
-  <p class="prtMinor">{{ v.notePostPIR }}</p>
-{% endif %}
-
 <p><span class = "prtHeader">Subject ID</span>: {{ v.name }}</p>
 
 {%if v.groups|length > 0 %}
@@ -51,6 +32,3 @@
 {% if v.getRefs(v)|length > 0  %}
   <p><span class="prtMinor"><span class="prtHeader">Linked files</span>: {{ include(template_from_string(v.linkedFilesString(v.getRefs(v)))) }}</p>
 {% endif %}
-
-<p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</span></p>
-</div>
