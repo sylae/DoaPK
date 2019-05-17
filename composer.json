@@ -1,7 +1,7 @@
 {
   "require": {
     "charlottedunois/collection": "^0.2.0",
-    "nesbot/carbon": "^2.16",
+    "nesbot/carbon": "^2.18",
     "twig/twig": "^2.10",
     "nikic/fast-route": "^1.3"
   },
