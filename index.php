@@ -10,6 +10,12 @@ namespace PRT;
 
 use Carbon\Carbon;
 use FastRoute;
+use FastRoute\RouteCollector;
+use ReflectionClass;
+use Twig\Environment;
+use Twig\Extension\StringLoaderExtension;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigTest;
 
 require_once "vendor/autoload.php";
 
@@ -82,14 +88,14 @@ foreach ($pirs as $source => $array) {
 
 
 // THE ACTUAL ROUTER
-$dispatcher = FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
-    $loader = new \Twig\Loader\FilesystemLoader('tpl');
-    $twig = new \Twig\Environment($loader, [
+$dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
+    $loader = new FilesystemLoader('tpl');
+    $twig = new Environment($loader, [
         'cache' => false,
     ]);
-    $twig->addExtension(new \Twig\Extension\StringLoaderExtension());
-    $twig->addTest(new \Twig\TwigTest('instanceof', function ($var, $instance) {
-        $reflexionClass = new \ReflectionClass($instance);
+    $twig->addExtension(new StringLoaderExtension());
+    $twig->addTest(new TwigTest('instanceof', function ($var, $instance) {
+        $reflexionClass = new ReflectionClass($instance);
         return $reflexionClass->isInstance($var);
     }));
     $searches = include "data/savedSearches.php";
@@ -160,8 +166,8 @@ $routeInfo = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         http_response_code(404);
-        $loader = new \Twig\Loader\FilesystemLoader('tpl');
-        $twig = new \Twig\Environment($loader, [
+        $loader = new FilesystemLoader('tpl');
+        $twig = new Environment($loader, [
             'cache' => false,
         ]);
         echo $twig->render("404.twig", [
@@ -173,8 +179,8 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         http_response_code(405);
-        $loader = new \Twig\Loader\FilesystemLoader('tpl');
-        $twig = new \Twig\Environment($loader, [
+        $loader = new FilesystemLoader('tpl');
+        $twig = new Environment($loader, [
             'cache' => false,
         ]);
         echo $twig->render("405.twig", [
