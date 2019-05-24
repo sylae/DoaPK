@@ -22,7 +22,10 @@
         "notePower": "Hotshot can fire bolts of heated energy from his fingertips. He also has a shield effect of some strength.",
         "classification": ["Blaster", "Brute"],
 
-        "notePostPIR": "Consult LANCER prior to any significant disciplinary or containment activity."
+        "notePostPIR": "Consult LANCER prior to any significant disciplinary or containment activity.",
+        "links": [
+
+        ]
     },
     {
         "name": "Knockoff",
@@ -45,7 +48,10 @@
         "intelAgency": ["PRTPDX-OPS", "WARDSPDX"],
 
         "notePower": "Knockoff is understood to have a Tinker specialization derived from parahumans she spends time near. Further details are pending.",
-        "classification": ["Tinker (Trump)", "Thinker 1"]
+        "classification": ["Tinker (Trump)", "Thinker 1"],
+        "links": [
+
+        ]
     },
     {
         "name": "Hypothermia",
@@ -68,7 +74,10 @@
         "intelAgency": ["WARDSPDX", "WARDSDEN-BZN"],
 
         "notePower": "Hypothermia is a highly dangerous and mobile Shaker. She creates shockwaves and explosions of ice that she uses both as an attack and to propel her around the battlefield.",
-        "classification": ["Mover", "Shaker"]
+        "classification": ["Mover", "Shaker"],
+        "links": [
+
+        ]
     },
     {
         "name": "Magnum Opus",
@@ -91,7 +100,10 @@
         "intelAgency": ["WARDSPDX", "FGI-GBR"],
 
         "notePower": "Magnum Opus is identified as a focal-type Tinker. Her power appears to have a wide focus, but she is limited by an inability to repair her inventions. Subject has expressed repeated dissatisfaction with current metallurgical processes, TINOPS recommends pairing with a metamaterials-providing cape.",
-        "classification": ["Tinker"]
+        "classification": ["Tinker"],
+        "links": [
+
+        ]
     },
     {
         "name": "Powerplay",
@@ -114,7 +126,10 @@
         "intelAgency": ["SDFSH", "WARDSPDX"],
 
         "notePower": "Powerplay is a grab-bag cape with three primary abilities. The most significant is the ability to shoot lasers from her person. She also possesses flight and a Brute-effect resilience.",
-        "classification": ["Blaster", "Mover", "Brute"]
+        "classification": ["Blaster", "Mover", "Brute"],
+        "links": [
+
+        ]
     },
     {
         "name": "Mirage",
@@ -137,6 +152,9 @@
         "intelAgency": ["WARDSNYC", "WARDSPDX"],
 
         "notePower": "Subject is a Tinker specializing in camoflauge and stealth technology.",
-        "classification": ["Tinker", "Stranger"]
+        "classification": ["Tinker", "Stranger"],
+        "links": [
+
+        ]
     }
 ]

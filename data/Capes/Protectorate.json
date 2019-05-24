@@ -20,7 +20,10 @@
         "intelAgency": ["PROTPDX"],
 
         "notePower": "Ley Line is a precog Thinker with the ability to determine people's short-term actions and fate, should he take no corrective action. These fates are visualized by the parahuman as lines extending from the subject's person.",
-        "classification": ["Thinker"]
+        "classification": ["Thinker"],
+        "links": [
+
+        ]
     },
     {
         "name": "Chain Link",
@@ -36,7 +39,10 @@
         "intelAgency": ["PROTPDX"],
 
         "notePower": "Chain Link can control ropes, chains, and similar objects within his vicinity. A possible Thinker and/or Master effect is possible due to his method of communication, but this has not been confimed.",
-        "classification": ["Breaker", "Shaker"]
+        "classification": ["Breaker", "Shaker"],
+        "links": [
+
+        ]
     },
     {
         "name": "Scarab",
@@ -59,7 +65,10 @@
         "intelAgency": ["PROTPDX", "WARDSMKE-MSN"],
 
         "notePower": "The subject has the ability to tear apart their surroundings and form the resultant debris into makeshift armor. In addition, subject can fire and control large spheres of debris at high speed.",
-        "classification": ["Brute", "Blaster"]
+        "classification": ["Brute", "Blaster"],
+        "links": [
+
+        ]
     },
     {
         "name": "Riftwatcher",
@@ -82,7 +91,10 @@
         "intelAgency": ["PROTPDX"],
 
         "notePower": "Riftwather's breaker state appears as a humanoid-shaped 'hole in reality'. In this form Riftwatcher can see alternate viewpoints and versions of his surroundings by 'tearing' shards out of reality. He can also use these shards offensively as needed.",
-        "classification": ["Breaker", "Thinker"]
+        "classification": ["Breaker", "Thinker"],
+        "links": [
+
+        ]
     },
     {
         "name": "Demesne",
@@ -105,6 +117,9 @@
         "intelAgency": ["PROTPDX"],
 
         "notePower": "Demesne's power allows her unparalleled mobility and control over a target area. However, for the duration her power is active, an impenetrable field encloses this space, preventing any from entering or leaving.",
-        "classification": ["Mover"]
+        "classification": ["Mover"],
+        "links": [
+
+        ]
     }
 ]

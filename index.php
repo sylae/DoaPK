@@ -16,6 +16,9 @@ require_once "vendor/autoload.php";
 $nowDate = Carbon::now("America/Los_Angeles")->setTimezone("America/Los_Angeles")->setDate(2011, 7, 14);
 Carbon::setTestNow($nowDate);
 
+// store our PIR links because we can't connect them until this is done :v
+$pirs = [];
+
 // DATA LOADING STEP ONE (CAPES)
 foreach (glob("data/Capes/*.json") as $file) {
     foreach (json_decode(file_get_contents($file), true) as $x) {
@@ -26,6 +29,9 @@ foreach (glob("data/Capes/*.json") as $file) {
             }
             switch ($arg) {
                 case "PIR":
+                    break;
+                case "links":
+                    $pirs[$c->getTag()] = $value;
                     break;
                 case "civ":
                     if (!is_array($value)) {
@@ -56,6 +62,9 @@ foreach (glob("data/Art/*.json") as $file) {
             switch ($arg) {
                 case "PIR":
                     break;
+                case "links":
+                    $pirs[$c->getTag()] = $value;
+                    break;
                 default:
                     $c->$arg = $value;
             }
@@ -63,12 +72,13 @@ foreach (glob("data/Art/*.json") as $file) {
     }
 }
 
-// TESTING PURPOSES
-$x = new PIR(0x1234, new Carbon("2001-01-01"), "KEI");
-PIR::pirDB()->each(function (PIR $v, $k) use ($x) {
-    $v->addRef(PIR::pirDB()->get("PDX-2011-8497"));
-    $v->addRef($x);
-});
+// CONNECT PIRS
+foreach ($pirs as $source => $array) {
+    $source = PIR::pirDB()->get($source);
+    foreach ($array as $dest) {
+        $source->addRef(PIR::pirDB()->get($dest));
+    }
+}
 
 
 // THE ACTUAL ROUTER
