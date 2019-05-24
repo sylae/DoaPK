@@ -8,9 +8,7 @@
 
 namespace PRT;
 
-use Carbon\Carbon;
-use \Carbon\CarbonInterface;
-use CharlotteDunois\Collect\Collection;
+use Carbon\CarbonInterface;
 
 /**
  * Pictures! of Art!

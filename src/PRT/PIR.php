@@ -9,7 +9,7 @@
 namespace PRT;
 
 use Carbon\Carbon;
-use \Carbon\CarbonInterface;
+use Carbon\CarbonInterface;
 use CharlotteDunois\Collect\Collection;
 
 /**
@@ -33,20 +33,18 @@ class PIR
 
     /**
      *
-     * @var \Carbon\CarbonInterface
+     * @var CarbonInterface
      */
     public $date;
-
-    /**
-     *
-     * @var \CharlotteDunois\Collect\Collection
-     */
-    private $refs;
-
     public $name;
     public $intelAgency = [];
     public $groups = [];
     public $notePostPIR;
+    /**
+     *
+     * @var Collection
+     */
+    private $refs;
 
     public function __construct(int $id, CarbonInterface $date, string $dept)
     {
@@ -60,52 +58,16 @@ class PIR
         if (!$this->isValidDept($dept)) {
             throw new \RangeException("Dept failed checks!");
         }
-        $this->id   = $id;
+        $this->id = $id;
         $this->date = $date->startOfDay();
         $this->dept = $dept;
 
         $this->setSelf();
     }
 
-    public function addRef(PIR $ref, bool $reverse = true)
-    {
-        $this->refs->set($ref->getTag(), $ref);
-        if ($reverse) {
-            $ref->refs->set($this->getTag(), $this);
-        }
-    }
-
-    public function hasRef(PIR $ref)
-    {
-        return $this->refs->has($ref->getTag());
-    }
-
-    public function getTag(): string
-    {
-        return sprintf("%s-%s-%s", mb_strtoupper($this->dept), $this->date->year, $this->formatID());
-    }
-
-    public function getLongTag(): string
-    {
-        return sprintf("%s %s", $this->getTag(), $this->date->format("Y-m-d"));
-    }
-
-    private function formatID(): string
-    {
-        return mb_strtoupper(str_pad(dechex($this->id), 4, "0", STR_PAD_LEFT));
-    }
-
     private function isValidID(int $input): bool
     {
         if ($input > 0xFFFF || $input < 0x0) {
-            return false;
-        }
-        return true;
-    }
-
-    private function isValidDept(string $input): bool
-    {
-        if (mb_strlen($input) != 3) {
             return false;
         }
         return true;
@@ -120,6 +82,19 @@ class PIR
         return true;
     }
 
+    private function isValidDept(string $input): bool
+    {
+        if (mb_strlen($input) != 3) {
+            return false;
+        }
+        return true;
+    }
+
+    private function setSelf()
+    {
+        self::pirDB()->set($this->getTag(), $this);
+    }
+
     public static function pirDB(): Collection
     {
         static $pirs;
@@ -130,9 +105,27 @@ class PIR
         return $pirs;
     }
 
-    private function setSelf()
+    public function getTag(): string
     {
-        self::pirDB()->set($this->getTag(), $this);
+        return sprintf("%s-%s-%s", mb_strtoupper($this->dept), $this->date->year, $this->formatID());
+    }
+
+    private function formatID(): string
+    {
+        return mb_strtoupper(str_pad(dechex($this->id), 4, "0", STR_PAD_LEFT));
+    }
+
+    public function addRef(PIR $ref, bool $reverse = true)
+    {
+        $this->refs->set($ref->getTag(), $ref);
+        if ($reverse) {
+            $ref->refs->set($this->getTag(), $this);
+        }
+    }
+
+    public function getLongTag(): string
+    {
+        return sprintf("%s %s", $this->getTag(), $this->date->format("Y-m-d"));
     }
 
     public function getRefs(PIR $needle)
@@ -145,6 +138,11 @@ class PIR
         })->sortCustom(function (PIR $a, PIR $b) {
             return $a->getSortNumber() <=> $b->getSortNumber();
         });
+    }
+
+    public function hasRef(PIR $ref)
+    {
+        return $this->refs->has($ref->getTag());
     }
 
     public function getSortNumber(): int

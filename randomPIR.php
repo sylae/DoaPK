@@ -17,15 +17,15 @@ Carbon::setTestNow($nowDate);
 
 $x = [];
 foreach (range(1, $argv[1] ?? 1) as $n) {
-    $day   = random_int(1, 365);
+    $day = random_int(1, 365);
     $pirNo = max(0, min(0xffff, ($day * 0xffff / 365) + random_int(-180, 180)));
-    $cbn   = (new \Carbon\CarbonImmutable("2010-01-01"))->addDays($day - 1);
-    $args  = [
+    $cbn = (new \Carbon\CarbonImmutable("2010-01-01"))->addDays($day - 1);
+    $args = [
         (new PIR($pirNo, $cbn->addYears(0), "PDX"))->getLongTag(),
         (new PIR($pirNo, $cbn->addYears(-5), "PDX"))->getLongTag(),
         (new PIR($pirNo, $cbn->addYears(-10), "PDX"))->getLongTag(),
         (new PIR($pirNo, $cbn->addYears(-15), "PDX"))->getLongTag(),
     ];
-    $x[]   = vsprintf("%s  %s  %s  %s", $args);
+    $x[] = vsprintf("%s  %s  %s  %s", $args);
 }
 echo implode(PHP_EOL, $x);

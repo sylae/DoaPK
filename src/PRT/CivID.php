@@ -23,16 +23,16 @@ class CivID
     public $dobConfident = true;
     public $birthplace;
     public $note;
-    public $agency       = [];
-    public $c53          = false;
+    public $agency = [];
+    public $c53 = false;
 
     public function pirString(): string
     {
         if ($this->c53) {
             return "<p><span class=\"prtHeader\">Civ. Identity</span>: See PRT-SPEC-0053</p>";
         }
-        $agency  = implode("/", $this->agency);
-        $lines   = [];
+        $agency = implode("/", $this->agency);
+        $lines = [];
         $lines[] = "<p class=\"prtMinor\">-----BEGIN TOP SECRET//{$agency}//ORCON-----</p>";
         $lines[] = "<p><span class=\"prtHeader\">Civ. Identity</span>: " . $this->verifiedString();
         if (is_string($this->name)) {
@@ -43,26 +43,6 @@ class CivID
         }
         $lines[] = "<p class=\"prtMinor\">-----END TOP SECRET//{$agency}//ORCON-----</p>";
         return implode(PHP_EOL, $lines);
-    }
-
-    private function ageString(): string
-    {
-        if ($this->dob instanceof Carbon) {
-            $age   = (string) $this->dob->diffInYears();
-            $paren = [];
-            if ($this->dobConfident) {
-                $paren[] = "born " . $this->dob->format("Y-m-d");
-            }
-            if (is_string($this->birthplace)) {
-                $paren[] = $this->birthplace;
-            }
-            if (count($paren) > 0) {
-                return $age . " (" . implode(", ", $paren) . ")";
-            } else {
-                return $age;
-            }
-        }
-        return "";
     }
 
     private function verifiedString(): string
@@ -82,5 +62,25 @@ class CivID
             default:
                 return "Limited information known (unverified, confidence level F)";
         }
+    }
+
+    private function ageString(): string
+    {
+        if ($this->dob instanceof Carbon) {
+            $age = (string) $this->dob->diffInYears();
+            $paren = [];
+            if ($this->dobConfident) {
+                $paren[] = "born " . $this->dob->format("Y-m-d");
+            }
+            if (is_string($this->birthplace)) {
+                $paren[] = $this->birthplace;
+            }
+            if (count($paren) > 0) {
+                return $age . " (" . implode(", ", $paren) . ")";
+            } else {
+                return $age;
+            }
+        }
+        return "";
     }
 }
