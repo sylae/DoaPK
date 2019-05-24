@@ -72,9 +72,9 @@ PIR::pirDB()->each(function (PIR $v, $k) use ($x) {
 
 
 // THE ACTUAL ROUTER
-$dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) {
+$dispatcher = FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
     $loader = new \Twig\Loader\FilesystemLoader('tpl');
-    $twig   = new \Twig\Environment($loader, [
+    $twig = new \Twig\Environment($loader, [
         'cache' => false,
     ]);
     $twig->addExtension(new \Twig\Extension\StringLoaderExtension());
@@ -84,11 +84,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
     }));
     $searches = include "data/savedSearches.php";
 
-    $r->addRoute('GET', '/diary/lookup', function(array $args) use ($twig, $searches) {
+    $r->addRoute('GET', '/diary/lookup', function (array $args) use ($twig, $searches) {
         echo $twig->render("lookup.twig", [
-            'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'now'      => Carbon::now(),
-            'count'    => PIR::pirDB()->count(),
+            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'now' => Carbon::now(),
+            'count' => PIR::pirDB()->count(),
             'searches' => $searches,
         ]);
     });
@@ -107,30 +107,30 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
             ]);
         } else {
             echo $twig->render("base.twig", [
-                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'now'      => Carbon::now(),
-                'count'    => PIR::pirDB()->count(),
+                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+                'now' => Carbon::now(),
+                'count' => PIR::pirDB()->count(),
                 'searches' => $searches,
             ]);
         }
     });
 
-    $r->addRoute('GET', '/diary/[{search}]', function(array $args) use ($twig, $searches) {
+    $r->addRoute('GET', '/diary/[{search}]', function (array $args) use ($twig, $searches) {
 
         if (array_key_exists($args['search'] ?? null, $searches)) {
             echo $twig->render("view.twig", [
-                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'records'  => PIR::pirDB()->filter($searches[$args['search']]['filter']),
-                'params'   => $searches[$args['search']]['args'],
-                'now'      => Carbon::now(),
-                'count'    => PIR::pirDB()->count(),
+                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+                'records' => PIR::pirDB()->filter($searches[$args['search']]['filter']),
+                'params' => $searches[$args['search']]['args'],
+                'now' => Carbon::now(),
+                'count' => PIR::pirDB()->count(),
                 'searches' => $searches,
             ]);
         } else {
             echo $twig->render("base.twig", [
-                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'now'      => Carbon::now(),
-                'count'    => PIR::pirDB()->count(),
+                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+                'now' => Carbon::now(),
+                'count' => PIR::pirDB()->count(),
                 'searches' => $searches,
             ]);
         }
@@ -151,27 +151,27 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         http_response_code(404);
         $loader = new \Twig\Loader\FilesystemLoader('tpl');
-        $twig   = new \Twig\Environment($loader, [
+        $twig = new \Twig\Environment($loader, [
             'cache' => false,
         ]);
         echo $twig->render("404.twig", [
-            'base'  => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'now'   => Carbon::now(),
+            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'now' => Carbon::now(),
             'count' => $capes->count(),
-            'uri'   => $uri
+            'uri' => $uri,
         ]);
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         http_response_code(405);
         $loader = new \Twig\Loader\FilesystemLoader('tpl');
-        $twig   = new \Twig\Environment($loader, [
+        $twig = new \Twig\Environment($loader, [
             'cache' => false,
         ]);
         echo $twig->render("405.twig", [
-            'base'           => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'now'            => Carbon::now(),
-            'count'          => $capes->count(),
-            'allowedMethods' => $routeInfo[1]
+            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+            'now' => Carbon::now(),
+            'count' => $capes->count(),
+            'allowedMethods' => $routeInfo[1],
         ]);
         break;
     case FastRoute\Dispatcher::FOUND:
