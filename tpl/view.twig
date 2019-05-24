@@ -4,47 +4,47 @@
     {{ parent() }}
     <p>{{ records.count()|number_format }} record(s) found matching the following search parameters:</p>
     <ul class="params">
-      {% for k,v in params %}
-          <li>{{ v|raw }}</li>
+        {% for k,v in params %}
+            <li>{{ v|raw }}</li>
 
-      {% endfor %}
+        {% endfor %}
     </ul>
 {% endblock %}
 
 {% block body %}
-  <div class="row">
-    {% for k, v in records %}
-      <h1>{{v.name}}</h1>
-      <div class="prt">
-      {% if v.intelAgency|length > 0 %}
-      <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
-      {% else %}
-      <p class="prtMinor">FOR PUBLIC RELEASE</p>
-      {% endif %}
-      <p class="prtMinor">PARAHUMAN RESPONSE TEAM<br />
-        PACIFIC NORTHWEST DIVISION - PORTLAND OFFICE<br />
-        INTELLIGENCE BUREAU</p>
+    <div class="row">
+        {% for k, v in records %}
+            <h1>{{ v.name }}</h1>
+            <div class="prt">
+                {% if v.intelAgency|length > 0 %}
+                    <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
+                {% else %}
+                    <p class="prtMinor">FOR PUBLIC RELEASE</p>
+                {% endif %}
+                <p class="prtMinor">PARAHUMAN RESPONSE TEAM<br />
+                    PACIFIC NORTHWEST DIVISION - PORTLAND OFFICE<br />
+                    INTELLIGENCE BUREAU</p>
 
-      <p class="prtMinor">Parahuman Intelligence Record<br />{{v.getLongTag()}}</p>
+                <p class="prtMinor">Parahuman Intelligence Record<br />{{ v.getLongTag() }}</p>
 
-      {%if v.notePostPIR is not empty %}
-        <p class="prtMinor">{{ v.notePostPIR }}</p>
-      {% endif %}
-
-
-      {% if v is instanceof('PRT\\Cape') %}
-        {{ include('view_Cape.twig') }}
-      {% endif %}
-      {% if v is instanceof('PRT\\Media') %}
-        {{ include('view_Media.twig') }}
-      {% endif %}
+                {% if v.notePostPIR is not empty %}
+                    <p class="prtMinor">{{ v.notePostPIR }}</p>
+                {% endif %}
 
 
-      {% if v.intelAgency|length > 0 %}
-      <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
-      {% endif %}
-      </div>
+                {% if v is instanceof('PRT\\Cape') %}
+                    {{ include('view_Cape.twig') }}
+                {% endif %}
+                {% if v is instanceof('PRT\\Media') %}
+                    {{ include('view_Media.twig') }}
+                {% endif %}
 
-    {% endfor %}
-  </div>
+
+                {% if v.intelAgency|length > 0 %}
+                    <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+    </div>
 {% endblock %}

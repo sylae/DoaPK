@@ -1,52 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{% block title %}PRT SAGA Database{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ base }}/css/style.css" />
-  </head>
-  <body>
-    <header>
-      <div class="login">You are logged in as <em>sara.pratt@portland.prt.gov</em><br />{{ now.toCookieString() }}</div>
-      <h1><a href="{{ base }}/">PRT Online Information Services<br /><small><em>SAGA</em> Database</small></a></h1>
-    </header>
-    <nav class="nav">
-      <ul>
+</head>
+<body>
+<header>
+    <div class="login">You are logged in as <em>sara.pratt@portland.prt.gov</em><br />{{ now.toCookieString() }}</div>
+    <h1><a href="{{ base }}/">PRT Online Information Services<br />
+            <small><em>SAGA</em> Database</small>
+        </a></h1>
+</header>
+<nav class="nav">
+    <ul>
         <li><a href="{{ base }}/">Home</a></li>
         <li><a href="{{ base }}/lookup">PIR Lookup</a></li>
-        <li><a href="https://forums.spacebattles.com/threads/diary-of-a-professional-knockoff-worm.663592/">Training</a></li>
-        <li><a href="https://forums.sufficientvelocity.com/threads/diary-of-a-professional-knockoff-worm.49090/">Medical</a></li>
+        <li><a href="https://forums.spacebattles.com/threads/diary-of-a-professional-knockoff-worm.663592/">Training</a>
+        </li>
+        <li>
+            <a href="https://forums.sufficientvelocity.com/threads/diary-of-a-professional-knockoff-worm.49090/">Medical</a>
+        </li>
         <li><a href="https://archiveofourown.org/works/15347448/chapters/35611380">Human Resources</a></li>
         <li><a href="https://www.fanfiction.net/s/13006277/1/Diary-of-a-Professional-Knockoff">System</a></li>
         <li><a href="mailto:keira@calref.net">Technical Support</a></li>
         <li><a href="{{ base }}/">Logout</a></li>
-      </ul>
-    </nav>
-  <main>
+    </ul>
+</nav>
+<main>
     <div class="searchInfo">
-    {% block searchInfo %}
-      <h3>Welcome to the PRT <em>SAGA</em> Database application</h3>
-      <p>You have access to {{ count|number_format }} PIR entries.</p>
-      <p>Saved Searches:</p>
-      <ul class="savedSearches">
-        {% for k,v in searches %}
-          <li><a href="{{ base }}/{{ k }}">{{ v.name }}</a></li>
+        {% block searchInfo %}
+            <h3>Welcome to the PRT <em>SAGA</em> Database application</h3>
+            <p>You have access to {{ count|number_format }} PIR entries.</p>
+            <p>Saved Searches:</p>
+            <ul class="savedSearches">
+                {% for k,v in searches %}
+                    <li><a href="{{ base }}/{{ k }}">{{ v.name }}</a></li>
 
-        {% endfor %}
-      </ul>
-    {% endblock %}
+                {% endfor %}
+            </ul>
+        {% endblock %}
     </div>
     <div class="content">
-      {% block body %}
-        <section>
-        <p><strong>To begin, please choose a saved search from the above options.</strong></p>
-        </section>
-      {% endblock %}
+        {% block body %}
+            <section>
+                <p><strong>To begin, please choose a saved search from the above options.</strong></p>
+            </section>
+        {% endblock %}
     </div>
-  </main>
-  <footer class="prt">
-    <p><small><span class="prtHeader">Support</span>: <em>SAGA</em> support can be found via your department's IT support contact, or through your regional PRT helpdesk. As part of the PRT's Open Government initiative, <em>SAGA</em> is <a href="https://github.com/sylae/DoaPK">open-source software</a>.</small></p>
-    <p><small><span class="prtMinor">For official use only. Unauthorized release of information is a violation of Federal Law under 18 U.S.C. § 798, as well as state and local laws as applicable. For more information, please contact your department PRT-IB officer.</span></small></p>
-  </footer>
-  </body>
+</main>
+<footer class="prt">
+    <p>
+        <small><span class="prtHeader">Support</span>: <em>SAGA</em> support can be found via your department's IT
+            support contact, or through your regional PRT helpdesk. As part of the PRT's Open Government initiative,
+            <em>SAGA</em> is <a href="https://github.com/sylae/DoaPK">open-source software</a>.
+        </small>
+    </p>
+    <p>
+        <small><span class="prtMinor">For official use only. Unauthorized release of information is a violation of Federal Law under 18 U.S.C. § 798, as well as state and local laws as applicable. For more information, please contact your department PRT-IB officer.</span>
+        </small>
+    </p>
+</footer>
+</body>
 </html>

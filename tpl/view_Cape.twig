@@ -1,34 +1,36 @@
-<p><span class = "prtHeader">Subject ID</span>: {{ v.name }}</p>
+<p><span class="prtHeader">Subject ID</span>: {{ v.name }}</p>
 
-{%if v.groups|length > 0 %}
-  <p><span class="prtHeader">Filed under</span>: {{ v.groups|join(', ') }}</p>
+{% if v.groups|length > 0 %}
+    <p><span class="prtHeader">Filed under</span>: {{ v.groups|join(', ') }}</p>
 {% endif %}
 
 
-{%if v.classification|length > 0 %}
-  <p><span class="prtHeader">Classification</span>: {{ v.classification|join(', ') }}</p>
+{% if v.classification|length > 0 %}
+    <p><span class="prtHeader">Classification</span>: {{ v.classification|join(', ') }}</p>
 {% endif %}
 
 {{ v.civID.pirString()|raw }}
 
-{%if v.notePower is not empty %}
-<p><span class="prtHeader">Power</span>: {{ v.notePower }}</p>
+{% if v.notePower is not empty %}
+    <p><span class="prtHeader">Power</span>: {{ v.notePower }}</p>
 {% endif %}
 
-{%if v.noteBehavior is not empty %}
-<p><span class="prtHeader">Behavior</span>: {{ v.noteBehavior }}</p>
+{% if v.noteBehavior is not empty %}
+    <p><span class="prtHeader">Behavior</span>: {{ v.noteBehavior }}</p>
 {% endif %}
 
-{%if v.noteAppearance is not empty %}
-<p><span class="prtHeader">Appearance</span>: {{ v.noteAppearance }}</p>
+{% if v.noteAppearance is not empty %}
+    <p><span class="prtHeader">Appearance</span>: {{ v.noteAppearance }}</p>
 {% endif %}
 
-{%if v.noteContainment is not empty %}
-  <p><span class="prtHeader">Containment</span>: {{ v.noteContainment }}</p>
-{%elseif v.classification|length > 0 %}
-  <p><span class="prtHeader">Containment</span>: Per Classification SOP.</p>
+{% if v.noteContainment is not empty %}
+    <p><span class="prtHeader">Containment</span>: {{ v.noteContainment }}</p>
+{% elseif v.classification|length > 0 %}
+    <p><span class="prtHeader">Containment</span>: Per Classification SOP.</p>
 {% endif %}
 
-{% if v.getRefs(v)|length > 0  %}
-  <p><span class="prtMinor"><span class="prtHeader">Linked files</span>: {{ include(template_from_string(v.linkedFilesString(v.getRefs(v)))) }}</p>
+{% if v.getRefs(v)|length > 0 %}
+    <p><span class="prtMinor"><span
+                    class="prtHeader">Linked files</span>: {{ include(template_from_string(v.linkedFilesString(v.getRefs(v)))) }}
+    </p>
 {% endif %}
