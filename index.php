@@ -173,7 +173,7 @@ switch ($routeInfo[0]) {
         echo $twig->render("404.twig", [
             'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
             'now' => Carbon::now(),
-            'count' => $capes->count(),
+            'count' => PIR::pirDB()->count(),
             'uri' => $uri,
         ]);
         break;
@@ -186,7 +186,7 @@ switch ($routeInfo[0]) {
         echo $twig->render("405.twig", [
             'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
             'now' => Carbon::now(),
-            'count' => $capes->count(),
+            'count' => PIR::pirDB()->count(),
             'allowedMethods' => $routeInfo[1],
         ]);
         break;
