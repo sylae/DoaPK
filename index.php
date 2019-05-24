@@ -9,7 +9,7 @@
 namespace PRT;
 
 use Carbon\Carbon;
-use \FastRoute;
+use FastRoute;
 
 require_once "vendor/autoload.php";
 
@@ -93,15 +93,16 @@ $dispatcher = FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) 
         ]);
     });
 
-    $r->addRoute('GET', '/diary/pir/{pir}', function(array $args) use ($twig, $searches) {
-
-        if (array_key_exists($args['search'] ?? null, $searches)) {
-            echo $twig->render("capes.twig", [
-                'base'     => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'capes'    => PIR::pirDB()->filter($searches[$args['search']]['filter']),
-                'params'   => $searches[$args['search']]['args'],
-                'now'      => Carbon::now(),
-                'count'    => PIR::pirDB()->count(),
+    $r->addRoute('GET', '/diary/pir/{pir}', function (array $args) use ($twig, $searches) {
+        if (PIR::pirDB()->has($args['pir'] ?? null)) {
+            echo $twig->render("view.twig", [
+                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
+                'records' => PIR::pirDB()->filter(function (PIR $v) use ($args) {
+                    return $v->getTag() == $args['pir'];
+                }),
+                'params' => ['<em>PIR reference number</em>: Equal to ' . htmlspecialchars($args['pir'])],
+                'now' => Carbon::now(),
+                'count' => PIR::pirDB()->count(),
                 'searches' => $searches,
             ]);
         } else {
