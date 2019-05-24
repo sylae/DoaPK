@@ -1,5 +1,8 @@
 composer.phar
 /vendor/
+
 /nbproject/private/
+/.idea/
+
 /css/*.css
 /css/*.map
