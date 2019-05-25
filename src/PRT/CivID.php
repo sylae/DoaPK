@@ -47,21 +47,15 @@ class CivID
 
     private function verifiedString(): string
     {
-        switch ($this->confidence) {
-            case "V":
-                return "Verified";
-            case "A":
-                return "Likely identity matched (confidence level A)";
-            case "B":
-                return "Probable identity matched (confidence level B)";
-            case "C":
-                return "Potential match found (confidence level C)";
-            case "D":
-                return "Potential match found (confidence level D)";
-            case "F":
-            default:
-                return "Limited information known (unverified, confidence level F)";
-        }
+        $opts = [
+            'V' => "Verified",
+            'A' => "Likely identity matched (confidence level A)",
+            'B' => "Probable identity matched (confidence level B)",
+            'C' => "Potential match found (confidence level C)",
+            'D' => "Potential match found (confidence level D)",
+            'F' => "Limited information known (unverified, confidence level F)",
+        ];
+        return $opts[$this->confidence] ?? $opts['F'];
     }
 
     private function ageString(): string
