@@ -16,6 +16,7 @@ use Twig\Environment;
 use Twig\Extension\StringLoaderExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigTest;
+use function FastRoute\simpleDispatcher;
 
 require_once "vendor/autoload.php";
 
@@ -88,7 +89,7 @@ foreach ($pirs as $source => $array) {
 
 
 // THE ACTUAL ROUTER
-$dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
+$dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $loader = new FilesystemLoader('tpl');
     $twig = new Environment($loader, [
         'cache' => false,
