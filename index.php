@@ -28,7 +28,7 @@ $pirs = [];
 // DATA LOADING STEP ONE (CAPES)
 foreach (glob("data/Capes/*.json") as $file) {
     foreach (json_decode(file_get_contents($file), true) as $x) {
-        $c = new Cape(hexdec($x['PIR'][0]), new Carbon($x['PIR'][1]), $x['PIR'][2]);
+        $c = new Cape((int) hexdec($x['PIR'][0]), new Carbon($x['PIR'][1]), $x['PIR'][2]);
         foreach ($x as $arg => $value) {
             if (is_null($arg)) {
                 continue;
@@ -60,7 +60,7 @@ foreach (glob("data/Capes/*.json") as $file) {
 // DATA LOADING STEP TWO (ART)
 foreach (glob("data/Art/*.json") as $file) {
     foreach (json_decode(file_get_contents($file), true) as $x) {
-        $c = new Media(hexdec($x['PIR'][0]), new Carbon($x['PIR'][1]), $x['PIR'][2]);
+        $c = new Media((int) hexdec($x['PIR'][0]), new Carbon($x['PIR'][1]), $x['PIR'][2]);
         foreach ($x as $arg => $value) {
             if (is_null($arg)) {
                 continue;
@@ -100,7 +100,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     }));
     $searches = include "data/savedSearches.php";
 
-    $r->addRoute('GET', '/diary/lookup', function (array $args) use ($twig, $searches) {
+    $r->addRoute('GET', '/diary/lookup', function () use ($twig, $searches) {
         echo $twig->render("lookup.twig", [
             'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
             'now' => Carbon::now(),

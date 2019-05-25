@@ -18,7 +18,7 @@ $searches['heroesPDX'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && (in_array("Wards", $v->groups) || in_array("Protectorate",
                     $v->groups)) && in_array("Portland Area", $v->groups) && in_array("Active", $v->groups));
     },
@@ -32,7 +32,7 @@ $searches['wardsPDX'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && in_array("Wards", $v->groups) && in_array("Portland Area",
                 $v->groups) && in_array("Active", $v->groups));
     },
@@ -46,7 +46,7 @@ $searches['protectoratePDX'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && in_array("Protectorate", $v->groups) && in_array("Portland Area",
                 $v->groups) && in_array("Active", $v->groups));
     },
@@ -60,7 +60,7 @@ $searches['elite'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && in_array("Elite", $v->groups) && in_array("Portland Area",
                 $v->groups) && in_array("Active", $v->groups));
     },
@@ -73,7 +73,7 @@ $searches['teamsters'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && in_array("Teamsters", $v->groups) && in_array("Active", $v->groups));
     },
 ];
@@ -85,7 +85,7 @@ $searches['burnside'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && in_array("Burnside St", $v->groups) && in_array("Active", $v->groups));
     },
 ];
@@ -97,7 +97,7 @@ $searches['cascadians'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && in_array("Elite", $v->groups) && in_array("Active", $v->groups));
     },
 ];
@@ -110,7 +110,7 @@ $searches['indies'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Parahuman Information File',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Cape && (in_array("Unaffiliated (Villain)",
                     $v->groups) || in_array("Unaffiliated (Rogue)", $v->groups) || in_array("Unaffiliated (Unknown)",
                     $v->groups)) && in_array("Portland Area", $v->groups) && in_array("Active", $v->groups));
@@ -124,7 +124,7 @@ $searches['media'] = [
         'AND <em>Filed under</em>: Active',
         'AND <em>PIR type</em>: Media Image',
     ],
-    'filter' => function (PIR $v, $k): bool {
+    'filter' => function (PIR $v): bool {
         return ($v instanceof Media);
     },
 ];

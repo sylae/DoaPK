@@ -11,6 +11,7 @@ namespace PRT;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use CharlotteDunois\Collect\Collection;
+use RangeException;
 
 /**
  * All reports in the PRT system are assigned a PIR.
@@ -50,13 +51,13 @@ class PIR
     {
         $this->refs = new Collection();
         if (!$this->isValidID($id)) {
-            throw new \RangeException("ID failed checks!");
+            throw new RangeException("ID failed checks!");
         }
         if (!$this->isValidDate($date)) {
-            throw new \RangeException("Date failed checks!");
+            throw new RangeException("Date failed checks!");
         }
         if (!$this->isValidDept($dept)) {
-            throw new \RangeException("Dept failed checks!");
+            throw new RangeException("Dept failed checks!");
         }
         $this->id = $id;
         $this->date = $date->startOfDay();
@@ -130,10 +131,10 @@ class PIR
 
     public function getRefs(PIR $needle)
     {
-        return self::pirDB()->filter(function (PIR $v, $k) use ($needle) {
+        return self::pirDB()->filter(function (PIR $v) {
             // remove self first
             return ($v != $this);
-        })->filter(function (PIR $v, $k) use ($needle) {
+        })->filter(function (PIR $v) use ($needle) {
             return $v->hasRef($needle);
         })->sortCustom(function (PIR $a, PIR $b) {
             return $a->getSortNumber() <=> $b->getSortNumber();
