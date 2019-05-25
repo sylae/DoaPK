@@ -61,7 +61,7 @@ class PIR
         }
         $this->id = $id;
         $this->date = $date->startOfDay();
-        $this->dept = $dept;
+        $this->dept = mb_strtoupper($dept);
 
         $this->setSelf();
     }
@@ -129,8 +129,11 @@ class PIR
         return sprintf("%s %s", $this->getTag(), $this->date->format("Y-m-d"));
     }
 
-    public function getRefs(PIR $needle)
+    public function getRefs(PIR $needle = null)
     {
+        if (is_null($needle)) {
+            $needle = $this;
+        }
         return self::pirDB()->filter(function (PIR $v) {
             // remove self first
             return ($v != $this);
