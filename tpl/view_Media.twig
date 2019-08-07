@@ -12,12 +12,6 @@
     <p><span class="prtHeader">Remarks</span>: {{ v.remarks }}</p>
 {% endif %}
 
-{% if v.image is not null %}
-    <div class="capeImage">
-        <a href="{{ base }}/img/{{ v.image }}"><img src="{{ base }}/img/{{ v.image }}" alt="{{ v.name }}" /></a>
-    </div>
-{% endif %}
-
 {% if v.getRefs(v)|length > 0 %}
     <p><span class="prtMinor"><span
                     class="prtHeader">Linked files</span>: {{ include(template_from_string(v.linkedFilesString(v.getRefs(v)))) }}

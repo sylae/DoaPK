@@ -143,8 +143,20 @@ footer {
 }
 
 .capeImage {
-  max-width: 500px;
+  max-width: 250px;
   width: 100%;
+  float: right;
+  border: 1px solid #040450;
+  font-style: italic;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .capeImage {
+    float: none;
+    max-width: none;
+  }
+
 }
 
 img {

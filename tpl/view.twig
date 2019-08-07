@@ -21,6 +21,13 @@
                 {% else %}
                     <p class="prtMinor">FOR PUBLIC RELEASE</p>
                 {% endif %}
+                {% if v.image is not null %}
+                    <div class="capeImage">
+                        <a href="{{ base }}/img/{{ v.image }}" target="_blank"><img src="{{ base }}/img/{{ v.image }}"
+                                                                                    alt="{{ v.name }}" /></a>
+                        <small>Click image to open in a new window</small>
+                    </div>
+                {% endif %}
                 <p class="prtMinor">PARAHUMAN RESPONSE TEAM<br />
                     PACIFIC NORTHWEST DIVISION - PORTLAND OFFICE<br />
                     INTELLIGENCE BUREAU</p>
