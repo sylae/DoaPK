@@ -41,6 +41,7 @@ class PIR
     public $intelAgency = [];
     public $groups = [];
     public $notePostPIR;
+
     /**
      *
      * @var Collection

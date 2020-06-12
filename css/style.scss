@@ -113,17 +113,19 @@ nav ul li + li::before {
   list-style-type: disclosure-closed;
 }
 
-
-main {
+.container {
   margin-top: 0;
   padding: 1em;
   background-color: #fff;
+}
+
+main {
   font-size: 0.8em;
 }
 
 footer {
-  margin-top: 0;
-  padding: 2em;
+  clear: both;
+  padding: 1em;
   background-color: #fff;
   font-size: 0.7em;
 }

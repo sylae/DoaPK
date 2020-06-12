@@ -62,13 +62,13 @@ class PIRTest extends \PHPUnit\Framework\TestCase
     public function test__constructInvalidDeptLow()
     {
         $this->expectException(RangeException::class);
-        new PIR(0x1134, new Carbon("1980-01-01"), "XX");
+        new PIR(0x1134, new Carbon("2010-01-01"), "XX");
     }
 
     public function test__constructInvalidDeptHigh()
     {
         $this->expectException(RangeException::class);
-        new PIR(0x1134, new Carbon("1980-01-01"), "XXXX");
+        new PIR(0x1134, new Carbon("2010-01-01"), "XXXX");
     }
 
     public function testPirDB()

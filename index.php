@@ -28,41 +28,31 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $twig = new Environment($loader, [
         'cache' => false,
     ]);
+    $searches = include "data/savedSearches.php";
+    $twig->addGlobal('now', Carbon::now());
+    $twig->addGlobal('count', PIR::pirDB()->count());
+    $twig->addGlobal('base', (php_uname('s') == "Windows NT") ? "" : "/diary");
+    $twig->addGlobal('searches', $searches);
     $twig->addExtension(new StringLoaderExtension());
     $twig->addTest(new TwigTest('instanceof', function ($var, $instance) {
         $reflexionClass = new ReflectionClass($instance);
         return $reflexionClass->isInstance($var);
     }));
-    $searches = include "data/savedSearches.php";
 
     $r->addRoute('GET', '/diary/lookup', function () use ($twig, $searches) {
-        echo $twig->render("lookup.twig", [
-            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'now' => Carbon::now(),
-            'count' => PIR::pirDB()->count(),
-            'searches' => $searches,
-        ]);
+        echo $twig->render("lookup.twig", []);
     });
 
     $r->addRoute('GET', '/diary/pir/{pir}', function (array $args) use ($twig, $searches) {
         if (PIR::pirDB()->has($args['pir'] ?? null)) {
             echo $twig->render("view.twig", [
-                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'records' => PIR::pirDB()->filter(function (PIR $v) use ($args) {
                     return $v->getTag() == $args['pir'];
                 }),
                 'params' => ['<em>PIR reference number</em>: Equal to ' . htmlspecialchars($args['pir'])],
-                'now' => Carbon::now(),
-                'count' => PIR::pirDB()->count(),
-                'searches' => $searches,
             ]);
         } else {
-            echo $twig->render("base.twig", [
-                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'now' => Carbon::now(),
-                'count' => PIR::pirDB()->count(),
-                'searches' => $searches,
-            ]);
+            echo $twig->render("base.twig", []);
         }
     });
 
@@ -70,20 +60,11 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
 
         if (array_key_exists($args['search'] ?? null, $searches)) {
             echo $twig->render("view.twig", [
-                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
                 'records' => PIR::pirDB()->filter($searches[$args['search']]['filter']),
                 'params' => $searches[$args['search']]['args'],
-                'now' => Carbon::now(),
-                'count' => PIR::pirDB()->count(),
-                'searches' => $searches,
             ]);
         } else {
-            echo $twig->render("base.twig", [
-                'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
-                'now' => Carbon::now(),
-                'count' => PIR::pirDB()->count(),
-                'searches' => $searches,
-            ]);
+            echo $twig->render("base.twig", []);
         }
     });
 });
@@ -106,9 +87,6 @@ switch ($routeInfo[0]) {
             'cache' => false,
         ]);
         echo $twig->render("404.twig", [
-            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'now' => Carbon::now(),
-            'count' => PIR::pirDB()->count(),
             'uri' => $uri,
         ]);
         break;
@@ -119,9 +97,6 @@ switch ($routeInfo[0]) {
             'cache' => false,
         ]);
         echo $twig->render("405.twig", [
-            'base' => (php_uname('s') == "Windows NT") ? "" : "/diary",
-            'now' => Carbon::now(),
-            'count' => PIR::pirDB()->count(),
             'allowedMethods' => $routeInfo[1],
         ]);
         break;
