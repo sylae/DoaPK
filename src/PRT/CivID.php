@@ -33,7 +33,7 @@ class CivID
         }
         $agency = implode("/", $this->agency);
         $lines = [];
-        $lines[] = "<p class=\"prtMinor\">-----BEGIN TOP SECRET//{$agency}//ORCON-----</p>";
+        $lines[] = "<p class=\"prtMinor\">-----BEGIN TOP SECRET//{$agency}//NOFORN-----</p>";
         $lines[] = "<p><span class=\"prtHeader\">Civ. Identity</span>: " . $this->verifiedString();
         if (is_string($this->name)) {
             $lines[] = '<br /><span class="prtHeader">Name</span>: ' . $this->name;
@@ -41,7 +41,7 @@ class CivID
         if ($this->dob instanceof Carbon) {
             $lines[] = '<br /><span class="prtHeader">Age</span>: ' . $this->ageString();
         }
-        $lines[] = "<p class=\"prtMinor\">-----END TOP SECRET//{$agency}//ORCON-----</p>";
+        $lines[] = "<p class=\"prtMinor\">-----END TOP SECRET//{$agency}//NOFORN-----</p>";
         return implode(PHP_EOL, $lines);
     }
 
@@ -54,8 +54,9 @@ class CivID
             'C' => "Potential match found (confidence level C)",
             'D' => "Potential match found (confidence level D)",
             'F' => "Limited information known (unverified, confidence level F)",
+            'U' => "No information available",
         ];
-        return $opts[$this->confidence] ?? $opts['F'];
+        return $opts[$this->confidence] ?? $opts['U'];
     }
 
     private function ageString(): string

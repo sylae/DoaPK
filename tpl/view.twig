@@ -17,7 +17,7 @@
             <h1>{{ v.name }}</h1>
             <div class="prt">
                 {% if v.intelAgency|length > 0 %}
-                    <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
+                    <p class="prtMinor">SECRET//{{ v.intelAgency|join('/') }}//NOFORN</p>
                 {% else %}
                     <p class="prtMinor">FOR PUBLIC RELEASE</p>
                 {% endif %}
@@ -48,7 +48,7 @@
 
 
                 {% if v.intelAgency|length > 0 %}
-                    <p class="prtMinor">CONFIDENTIAL//{{ v.intelAgency|join('/') }}//ORCON</p>
+                    <p class="prtMinor">SECRET//{{ v.intelAgency|join('/') }}//NOFORN</p>
                 {% endif %}
             </div>
 
