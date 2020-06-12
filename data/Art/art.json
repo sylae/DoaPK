@@ -7,8 +7,8 @@
       "Interns (PDX Ops)"
     ],
     "PIR": [
-      "651e",
-      "2011-05-23",
+      "3faf",
+      "2011-03-29",
       "PDX"
     ],
     "artistURL": "https://www.deviantart.com/kingdaume/art/Commission-Knockoff-759575579",
@@ -31,14 +31,60 @@
       "Pending Review"
     ],
     "PIR": [
-      "651f",
-      "2011-05-23",
+      "85a9",
+      "2011-07-11",
       "PDX"
     ],
     "artistURL": "https://www.deviantart.com/cpericardium",
     "artist": "Pericardium",
     "remarks": "idk keira put words here when it's not ass o'clock you should have been in bed literally seven hours ago whyyyyy jesus christ you wonder why your quality of life is so low and it's like, hey maybe if you actually kept a consistent sleep schedule that might be a start, but no, you have to go and be a dumb fucking bitch and do this shit.",
     "image": "media/knockoffPeri.png",
+    "links": [
+      "PDX-2011-8497"
+    ]
+  },
+  {
+    "name": "Portland Wards",
+    "groups": [
+      "Wards",
+      "Active",
+      "Portland Area"
+    ],
+    "PIR": [
+      "872c",
+      "2011-07-12",
+      "PDX"
+    ],
+    "artistURL": "https://www.deviantart.com/kingdaume/",
+    "artist": "Kingdaume",
+    "remarks": "Yeet!",
+    "image": "media/wardsKD.png",
+    "intelAgency": [
+      "PRTPDX-OPS"
+    ],
+    "links": [
+      "PDX-2011-8497"
+    ]
+  },
+  {
+    "name": "Skullfucker",
+    "groups": [
+      "Unaffiliated (Villain)",
+      "Active",
+      "Portland Area"
+    ],
+    "PIR": [
+      "8721",
+      "2011-07-12",
+      "PDX"
+    ],
+    "artistURL": "https://www.deviantart.com/fruppycup/",
+    "artist": "Deercarcass",
+    "remarks": "Yeet!",
+    "image": "media/skullfuckerDeercarcass.png",
+    "intelAgency": [
+      "PRTPDX-OPS"
+    ],
     "links": [
       "PDX-2011-8497"
     ]
