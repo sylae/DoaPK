@@ -2,7 +2,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "nesbot/carbon": "^2.51",
+    "nesbot/carbon": "^2.63",
     "nikic/fast-route": "^1.3",
     "sylae/collection": "^0.2.0",
     "twig/twig": "^3.4",
