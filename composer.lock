@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "806fe815f4bc41392b3ed27c7630e5cf",
+    "content-hash": "d7ab812d1f8ac1e3a128b901a9cdc738",
     "packages": [
         {
             "name": "nesbot/carbon",
@@ -154,20 +154,20 @@
         },
         {
             "name": "sylae/collection",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sylae/Collection.git",
-                "reference": "6a68c193baa3ef2224e7ff66a73164b533e73bcb"
+                "reference": "8eb7b8ae4b397a28f988a0cad156541879071102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sylae/Collection/zipball/6a68c193baa3ef2224e7ff66a73164b533e73bcb",
-                "reference": "6a68c193baa3ef2224e7ff66a73164b533e73bcb",
+                "url": "https://api.github.com/repos/sylae/Collection/zipball/8eb7b8ae4b397a28f988a0cad156541879071102",
+                "reference": "8eb7b8ae4b397a28f988a0cad156541879071102",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0"
+                "php": ">=8.0"
             },
             "replace": {
                 "charlottedunois/collection": "self.version"
@@ -200,9 +200,19 @@
             "homepage": "https://github.com/sylae/Collection",
             "support": {
                 "issues": "https://github.com/sylae/Collection/issues",
-                "source": "https://github.com/sylae/Collection/tree/master"
+                "source": "https://github.com/sylae/Collection/tree/v0.3.0"
             },
-            "time": "2020-05-02T22:00:22+00:00"
+            "funding": [
+                {
+                    "url": "https://paypal.me/MisfitMaid",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/MisfitMaid",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-11-12T23:41:39+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
