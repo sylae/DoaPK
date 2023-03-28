@@ -23,7 +23,7 @@
     "sort-packages": true
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.6"
   },
   "name": "sylae/doapk",
   "description": "Diary of a Professional Knockoff (website)"
